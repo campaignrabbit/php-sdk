@@ -1,13 +1,13 @@
 {
 
-    "name": "CampaignRabbit/php-sdk",
+    "name": "campaignrabbit/php-sdk",
     "description": "CampaignRabbit PHP Client Library",
     "type": "project",
     "license": "GPL",
     "authors": [
         {
-            "name": "Cartrabbit",
-            "email": "alagesan@flycart.org"
+            "name": "Alagesan",
+            "email": "hello@campaignrabbit.com"
         }
     ],
     "minimum-stability": "stable",
