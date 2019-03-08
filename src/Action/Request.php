@@ -78,13 +78,24 @@ class Request{
 
     function parseResponse($response){
 
-        $ex_body = $response->getBody()->getContents();
-        $ex_body = !empty($ex_body) ? json_decode($ex_body) : new \stdClass();
-        $parsed_response = array(
-            'message'=> $response->getReasonPhrase(),
-            'code'=>$response->getStatusCode(),
-            'body'=> isset($ex_body->data) ? $ex_body->data: $ex_body
-        );
+        if(isset($response) && is_object($response)){
+            $ex_body = $response->getBody()->getContents();
+            $ex_body = !empty($ex_body) ? json_decode($ex_body) : new \stdClass();
+            $parsed_response = array(
+                'message'=> $response->getReasonPhrase(),
+                'code'=>$response->getStatusCode(),
+                'body'=> isset($ex_body->data) ? $ex_body->data: $ex_body
+            );
+        }else{
+            $error = new \stdClass();
+            $error->error = 'No response from CampaignRabbit';
+            $parsed_response = array(
+                'message'=> 'No response from CampaignRabbit',
+                'code' => 200,
+                'body' => $error
+            );
+        }
+
         //$parsed_response['body'] = isset($parsed_response['body']) ? json_decode($parsed_response['body']): new stdClass();
 
         return $parsed_response;
